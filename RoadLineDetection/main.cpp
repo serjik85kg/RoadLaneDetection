@@ -6,11 +6,6 @@
 
 int main(int argc, char * argv)
 {
-	auto img = cv::imread("D:/PyCharm projects/AdvancedLineFinding/CarND-Advanced-Lane-Lines/dbg/vid1_dbg_145.jpg");
-	//auto img = cv::imread("D:/PyCharm projects/AdvancedLineFinding/CarND-Advanced-Lane-Lines/test_images/straight_lines1.jpg");
-	//auto img = cv::imread("D:/PyCharm projects/AdvancedLineFinding/CarND-Advanced-Lane-Lines/test_images/test6.jpg");
-	auto imageW = img.cols;
-	auto imageH = img.rows;
 
 	std::vector<cv::Point2f> defaultSrcCorners{ cv::Point2f(220, 720), cv::Point2f(580, 460), cv::Point2f(700, 460), cv::Point2f(1120, 720) }; // for test video scales
 
@@ -29,13 +24,6 @@ int main(int argc, char * argv)
 		cv::imshow("result", result);
 		cv::waitKey(30);
 	} 
-
-
-
-	//auto result = processImg.Inference(img, true);
-
-	//cv::imshow("result", result);
-	//cv::waitKey();
 
 
 	//debugdraw::showImageReformerBinary(img);

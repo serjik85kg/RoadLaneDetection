@@ -33,20 +33,8 @@ namespace roadLineDetection
 		m_lLane = Line();
 		m_rLane = Line();
 		auto transMat = laneHandle::transforms::calcPerspectiveMat(m_defCorners, defaultDstCorners);
-		//for (auto& p : m_defCorners)
-		//{
-		//	std::cout << p << ' ';
-		//}
-		//std::cout << std::endl;
-		//for (auto& p : defaultDstCorners)
-		//{
-		//	std::cout << p << ' ';
-		//}
-		//std::cout << std::endl;
 		m_defM = transMat.first;
 		m_defMInv = transMat.second;
-		//std::cout << m_defM << std::endl;
-		//std::cout << m_defMInv << std::endl;
 		m_corners = m_defCorners;
 		m_m = m_defM.clone();
 		m_mInv = m_defMInv.clone();
@@ -73,7 +61,6 @@ namespace roadLineDetection
 
 	void Processor::ResetViewRange()
 	{
-		//std::cout << "ResetViewRange " << std::endl;
 		m_perspRectTop = perspRectTopDef;
 	}
 
@@ -99,7 +86,7 @@ namespace roadLineDetection
 			rightY[index] = p.y;
 		}
 		auto[lf, rf] = laneHandle::fitPoly(leftX, leftY, rightX, rightY);
-		auto[lfx, rfx, height] = laneHandle::findPolyValues(lf, rf, m_visBin.size()); //m_visBin(1280x720)
+		auto[lfx, rfx, height] = laneHandle::findPolyValues(lf, rf, m_visBin.size()); 
 		return std::make_tuple(lf, rf, lfx, rfx);
 	}
 
@@ -615,14 +602,12 @@ namespace roadLineDetection
 		if (((m_doAverage) && (m_historyLen >= minFramesToAverage))
 			|| ((!m_doAverage) && (m_historyLen >= 1)))
 		{
-			//m_lLane.bestX 
 			m_lLane.bestX = eigenOperations::calculateMean(m_lLane.recentXFitted);
 			m_rLane.bestX = eigenOperations::calculateMean(m_rLane.recentXFitted);
 			m_lLane.bestFit = eigenOperations::calculateMean(m_lLane.recentFit);
 			m_rLane.bestFit = eigenOperations::calculateMean(m_rLane.recentFit);
 
 			// Draw lane approximation //
-			//cv::Mat mInv = (cv::Mat_<double>(3,3) << 1.3888e-1, -7.9e-1, 5.542295e2, 1.584476e-16, -5.17693766e-1, 4.54188568e2, 2.23704891e-19, -1.23177265e-3, 1.);
 			result = laneHandle::drawLane(img, warpedBinImg, m_lLane.bestX, m_rLane.bestX, m_mInv);
 
 			// Calculate the radius of curvature in pixels for both lane lines
