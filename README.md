@@ -26,3 +26,5 @@ Below I will describe a few highlights of how you can achieved this.
 ##### Standard image convertions
 Grayscaling and clache normalization:
 ![til](/RoadLineDetection/data/outputs/Image_reformer/1_gray_normalize.jpg)
+Separate S channel from HSL color model (we can modify sun light effect case later via S channel):
+![til](/RoadLineDetection/data/outputs/Image_reformer/1_s_channel.jpg)
