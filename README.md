@@ -23,8 +23,13 @@ Below I will describe a few highlights of how you can achieved this.
       - Multi-frame alignment
       - Get final result  
 ### ImageReformer
-##### Standard image convertions
+#### Standard image convertions
 Grayscaling and clache normalization:
 ![til](/RoadLineDetection/data/outputs/Image_reformer/1_gray_normalize.jpg)
 Separate S channel from HSL color model (we can modify sun light effect case later via S channel):
 ![til](/RoadLineDetection/data/outputs/Image_reformer/1_s_channel.jpg)
+#### Threshold image convertions
+A: Sobel threshed S-channel
+B: Gray Mask (check source code for explanation)
+A - B: Filtered S channel. We delete garbage edges from the road zone
+![til](/RoadLineDetection/data/outputs/Image_reformer/2_s_sobel-grayreger.jpg)
