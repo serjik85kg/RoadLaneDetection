@@ -39,3 +39,6 @@ Separate S channel from HSL color model (we can modify sun light effect case lat
 **B**: White Mask (check source code for explanation)  
 **A - B**: Filtered SobelX. We delete garbage nonzero pixels  
 ![til](/RoadLineDetection/data/outputs/Image_reformer/2_gray_sobel-no-white.jpg)  
+#### 3. Color filter (yellow & white)
+Highlight yellow and white road lines
+![til](/RoadLineDetection/data/outputs/Image_reformer/2_yellow-white_filter.jpg)  
