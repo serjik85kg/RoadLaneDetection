@@ -22,23 +22,46 @@ Below I will describe a few highlights of how you can achieved this.
       - Identification history
       - Multi-frame alignment
       - Get final result  
-## ImageReformer
+# ImageReformer
+## Make Binary Image
 ### Standard image convertions
-Grayscaling and clache normalization:
-![til](/RoadLineDetection/data/outputs/Image_reformer/1_gray_normalize.jpg)
-Separate S channel from HSL color model (we can modify sun light effect case later via S channel):
-![til](/RoadLineDetection/data/outputs/Image_reformer/1_s_channel.jpg)
+Grayscaling and clache normalization:  
+![til](/RoadLineDetection/data/debug_images/dbg_2.jpg)  
+(original image: dbg_2.jpg)  
+![til](/RoadLineDetection/data/outputs/Image_reformer/1_gray_normalize.jpg)    
+Separate S channel from HSL color model (we can modify sun light effect case later via S channel):  
+![til](/RoadLineDetection/data/outputs/Image_reformer/1_s_channel.jpg)  
+(original image: dbg_3.jpg)  
 ### Threshold image convertions
 #### 1. Filtered S channel
 **A**: Sobel threshed S-channel  
 **B**: Gray Mask (check source code for explanation)  
 **A - B**: Filtered S channel. We delete garbage edges from the road zone  
 ![til](/RoadLineDetection/data/outputs/Image_reformer/2_s_sobel-grayreger.jpg)  
-#### 2. Filtered Gray SobelX
+(original image: dbg_3.jpg)    
+#### 2. Filtered Gray SobelX  
+![til](/RoadLineDetection/data/debug_images/dbg_1.jpg)  
+(original image: dbg_1.jpg)  
 **A**: Sobel threshed gray normalized image  
 **B**: White Mask (check source code for explanation)  
-**A - B**: Filtered SobelX. We delete garbage nonzero pixels  
-![til](/RoadLineDetection/data/outputs/Image_reformer/2_gray_sobel-no-white.jpg)  
+**A - B**: Filtered SobelX. We delete garbage nonzero pixels
+![til](/RoadLineDetection/data/outputs/Image_reformer/2_gray_sobel-no-white.jpg)
 #### 3. Color filter (yellow & white)
 Highlight yellow and white road lines
-![til](/RoadLineDetection/data/outputs/Image_reformer/2_yellow-white_filter.jpg)  
+![til](/RoadLineDetection/data/outputs/Image_reformer/2_yellow-white_filter.jpg) 
+### Additional image convertions
+#### 1. Shadow filter
+![til](/RoadLineDetection/data/debug_images/dbg_2.jpg)  
+(original image: dbg_2.jpg)    
+**A**: Filtered Gray SobelX (check THreshold Image Conversions #2)  
+**B**: Shadow filter (sobel for dark regions, check source code for explanation)  
+**A | B**: Final Sobel Filter.  
+![til](/RoadLineDetection/data/outputs/Image_reformer/3_shadow_filter.jpg) 
+As you can see, we catched lines in sun and dark regions together.  
+#### 2. Light filter
+This is the part of color filter.  
+So it is the equivalent of shadow filter for light regions.  
+TO DO: add a good example for it.  
+__________________________________
+So finally I combined *Sobel Filter*, *Color Filter* and *S-filter* to the general output.
+
