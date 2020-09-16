@@ -64,4 +64,13 @@ So it is the equivalent of shadow filter for light regions.
 TO DO: add a good example for it.  
 __________________________________
 So finally I combined *Sobel Filter*, *Color Filter* and *S-filter* to the general output.
+![til](/RoadLineDetection/data/debug_images/dbg_4.jpg)  
+(original image: dbg_4.jpg)  
+![til](/RoadLineDetection/data/outputs/Image_reformer/combined_binary.jpg)
+![til](/RoadLineDetection/data/outputs/Image_reformer/Colored_binary.jpg) 
+Sobel Filter - Green  
+Color Filter - Blue  
+S-Filter - Red  
+**So now we have good binary output image, and we can see road lanes in interested area. We must try to catch lane points separately. Next step: Lane Handle!**  
 
+# Lane Handle
