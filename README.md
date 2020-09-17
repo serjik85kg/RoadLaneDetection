@@ -22,7 +22,7 @@ Below I will describe a few highlights of how you can achieved this.
       - Identification history
       - Multi-frame alignment
       - Get final result  
-# ImageReformer
+# Part 1. ImageReformer
 ## Make Binary Image
 ### Standard image convertions
 Grayscaling and clache normalization:  
@@ -73,4 +73,4 @@ Color Filter - Blue
 S-Filter - Red  
 **So now we have good binary output image, and we can see road lanes in interested area. We must try to catch lane points separately. Next step: Lane Handle!**  
 
-# Lane Handle
+# Part 2. Lane Handle
