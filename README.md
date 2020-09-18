@@ -79,29 +79,29 @@ In this part, we will find the traffic lane from the converted binary image.
 ### Image transforms
 One of the main additional transformations is "image warping".  
 We set the initial and final shape of the quadrilateral area of the image (the road zone) and find the forward and reverse transformation matrices.  
-![til](/RoadLineDetection/data/outputs/Lane_handle/warped_example.jpg)
+![til](/RoadLineDetection/data/outputs/Lane_handle/warped_example.jpg)  
 For more information, see the code in the laneHandle::transforms namespace.
 ### Detect lane pixels
-To detect lane pixels we used sliding boxes algorithm (check laneHandle::findLanePixels).
+To detect lane pixels we used sliding boxes algorithm (check *laneHandle::findLanePixels(...)*).
 We set the starting positions of the boxes, calculate the center of mass of the points inside them, and move the box so that the center of mass of the points is in the center of the box.   
 Repeat this for all boxes for each line.  
 The points "captured" inside these boxes will belong to our lines.
 Then, for each array of line points, we calculate an approximate quadratic function.  
-Previously, opencv had a special built-in function for this, but it was removed in opencv 3, so I added my own implementation (for more information, see eigenOperations::polyfit).  
+Previously, opencv had a special built-in function for this, but it was removed in opencv 3, so I added my own implementation (for more information, see *eigenOperations::polyfit()*).  
 ![til](/RoadLineDetection/data/outputs/Lane_handle/warped_fit_polynomial.jpg)
 Left line points are red. Right line points are blue.   
 Each was searched using search boxes that are marked by green (in this case, 9 on each side).  
 After all, using the two arrays of points found on the left and right lines, the approximation of each of them to a quadratic function was calculated (yellow lines).  
 ### Find linear perspective
 In this block we find perspective lines and quadrilateral area from this lines for road lane detecting.  
-It is a part of adaptive rectification algorithm. To recalculate the source points of perspective rectangle we approximated lines on original image using least squares algorithm (see laneHandle::findLinearLines). To get lane points we used perspective transform from warped to original view, as points on warped image were found by sliding box or search from prior algorithms (check it later).  
-After lines approximation is found, we look for their cross, otherwise it is considered as bad detection. Then we calculate source points of perspective rectangle (laneHandle::findPespectiveRect). This calculation is parametized by width of rectangle's. This is useful to control how much distance ahead will perspective transform fetch.
+It is a part of adaptive rectification algorithm. To recalculate the source points of perspective rectangle we approximated lines on original image using least squares algorithm (see *laneHandle::findLinearLines()*). To get lane points we used perspective transform from warped to original view, as points on warped image were found by sliding box or search from prior algorithms (check it later).  
+After lines approximation is found, we look for their cross, otherwise it is considered as bad detection. Then we calculate source points of perspective rectangle (*laneHandle::findPespectiveRect()*). This calculation is parametized by width of rectangle's. This is useful to control how much distance ahead will perspective transform fetch.
 See the the output images.
 ![til](/RoadLineDetection/data/outputs/Lane_handle/find_perspective.jpg)
 Lines apporximation and their cross is shown with blue color.  
 Perspective rectangle is shown with red color.
 #### Search Around Poly
-This is an auxiliary function that will be used in parallel with laneHandle::findLanePixels, depending on the number of frames lost (more on this in the next section).  
+This is an auxiliary function that will be used in parallel with *laneHandle::findLanePixels(...)*, depending on the number of frames lost (more on this in the next section).  
 ![til](/RoadLineDetection/data/outputs/Lane_handle/warped_around_poly.jpg)
 ### Get traffic lane
 Fillpoly between detected lines and unwrap to original image.
