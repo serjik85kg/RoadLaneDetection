@@ -52,7 +52,7 @@ namespace debugdraw
 		auto[leftDots, rightDots] = laneHandle::getDotsPair(lfx, rfx, warped);
 		auto[leftL, rightL] = laneHandle::findLinearLines(leftDots, rightDots, showImg, false);
 		auto rect = laneHandle::findPerspectiveRect(leftL, rightL, rectTopWidth, showImg, true);
-		cv::imshow("PerspectiveLines", showImg);
+		cv::imshow("PerspectiveRect", showImg);
 		cv::waitKey();
 	}
 
@@ -63,7 +63,7 @@ namespace debugdraw
 		auto warped = laneHandle::transforms::getWarped(combinedBinary, 0);
 		auto[height, lfit, rfit, lfx, rfx, _none] = laneHandle::fitPolynomial(warped, true);
 		auto[plt, lf, rf, newlfix, newrfix, warpedPoly] = laneHandle::findAroundPoly(warped, lfit, rfit);
-		cv::imshow("PerspectiveLines", warpedPoly);
+		cv::imshow("Warped Around Poly", warpedPoly);
 		cv::waitKey();
 	}
 
