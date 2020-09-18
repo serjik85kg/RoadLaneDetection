@@ -1,16 +1,16 @@
 # RoadLaneDetection
 Road Lane Detection using OpenCV and additional algorithms.  
-One of my past projects involved autonomous vehicle movement with a minimal number of sensors involved. The entire project included a complex multi-level algorithm that involved computer vision algorithms, several neural networks (like Yolo, SCNN, etc.), and the use of additional sensors in addition to the video camera (for example, several TOFs).
+One of my past projects on my first work involved autonomous vehicle movement with a minimal number of sensors involved. The entire project included a complex multi-level algorithm that involved computer vision algorithms, several neural networks (like Yolo, SCNN, etc.), and the use of additional sensors in addition to the video camera (for example, several TOFs).
 The presented part of the project will use only computer vision algorithms (OpenCV) to demonstrate its capabilities (as well as limitations). However, for the case of clear standard markings, these algorithms are sufficient to find the traffic lane.  
 ## Example result
 ![til](/RoadLineDetection/data/outputs/example_video_out.gif)
-Below I will describe a few highlights of how you can achieved this.
+Below I will describe a few highlights of how I achieveded this.
 # Algorithm blocks
   - ImageReformer
       - Make binary image
         - standard image convertions (gray, normalization, RGB->HSL, etc.)
         - threshold image convertions (sobel, color)
-        - additional image convertions (processing dark regions: light filter, shadow filter)
+        - additional image convertions (processing dark regions(shadow filter) and light regions (light filter))
   - LaneHandle
       - Image transforms
       - Detect lane pixels
@@ -80,7 +80,7 @@ In this part, we will find the traffic lane from the converted binary image.
 One of the main additional transformations is **image warping**.  
 We set the initial and final shape of the quadrilateral area of the image (the road zone) and find the forward and reverse transformation matrices.  
 ![til](/RoadLineDetection/data/outputs/Lane_handle/warped_example.jpg)  
-For more information, see the code in the laneHandle::transforms namespace.
+For more information, see the code in the **laneHandle::transforms** namespace.
 ### Detect lane pixels
 To detect lane pixels we used sliding boxes algorithm (check **laneHandle::findLanePixels(...)**).
 We set the starting positions of the boxes, calculate the center of mass of the points inside them, and move the box so that the center of mass of the points is in the center of the box.   
@@ -112,7 +112,7 @@ Additional: calculate radius of lines and slide of central position (metrics wer
 This class combines and binds the algorithms described above, handles cases of false and good ones, calculates average values for several frames,and draws the results.
 Its constructor has the following parameters:
  - doAverage (bool). If set to True, averaged polynomial lane approximation will be drawn (if use metrics, averaged values of curvature radius will be shown)  
- - doDebug (bool). 
+ - doDebug (bool). I used this for debugging. Now deprecated.
  - defCorners (std::vector<cv::Point2f>). Default locations of source points for perspective transform. Use for initial and reset.
  - defWidth (int). Default width of upper edge of perspective rectangle's top edge. Use for initial and reset.  
  
@@ -128,5 +128,6 @@ The following pipeline is establihed there:
 # Conclusion
 A small note.
 As I wrote earlier, this project is only part of a large and complex project. The algorithm doesn't take into account difficult urban situations, asphalt with puddles, and can't handle glare from the sun and headlights of oncoming cars. And it is impossible to foresee all these cases with ordinary computer vision, using only one camera. It's brutal do get all information only from color of pixels. That's why machine learning is so popular nowadays. However, this algorithm works well for motorways and other roads where there are two clear marking lines for each lane.
-Ultimately, my goal here was to demonstrate the capabilities of computer vision, the OpenCV library, and how to apply functions from this library.
+Ultimately, my goal here was to demonstrate the capabilities of computer vision, the OpenCV library, and how to apply functions from this library.  
+By the way, since the project had to be written "from memory", I didn't bother much with optimization. I will return to this question as soon as I have the strength and time. This will not affect the understanding and logic of the algorithm in any way.
 As soon as I have time, I will expand this project by adding additional features that can find the road in an urban environment, even in some cases with non-standard markings.
