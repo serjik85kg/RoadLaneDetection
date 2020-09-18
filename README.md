@@ -115,6 +115,7 @@ Its constructor has the following parameters:
  - doDebug (bool). 
  - defCorners (std::vector<cv::Point2f>). Default locations of source points for perspective transform. Use for initial and reset.
  - defWidth (int). Default width of upper edge of perspective rectangle's top edge. Use for initial and reset.  
+ 
 And main inference method Processor::Inference(const cv::Mat& src, bool isDebug = false):  
 The following pipeline is establihed there:
  - Make Binary
