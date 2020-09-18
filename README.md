@@ -135,3 +135,6 @@ As I wrote earlier, this project is only part of a large and complex project. Th
 Ultimately, my goal here was to demonstrate the capabilities of computer vision, the OpenCV library, and how to apply functions from this library.  
 By the way, since the project had to be written "from memory", I didn't bother much with optimization. I will return to this question as soon as I have the strength and time. This will not affect the understanding and logic of the algorithm in any way.
 As soon as I have time, I will expand this project by adding additional features that can find the road in an urban environment, even in some cases with non-standard markings.
+### Bonus brutal video output
+![til](/RoadLineDetection/data/outputs/example_video_hard.gif)  
+Pretty good :)
