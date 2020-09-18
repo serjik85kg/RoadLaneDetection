@@ -2,6 +2,10 @@
 Road Lane Detection using OpenCV and additional algorithms.  
 One of my past projects on my first work involved autonomous vehicle movement with a minimal number of sensors involved. The entire project included a complex multi-level algorithm that involved computer vision algorithms, several neural networks (like Yolo, SCNN, etc.), and the use of additional sensors in addition to the video camera (for example, several TOFs).
 The presented part of the project will use only computer vision algorithms (OpenCV) to demonstrate its capabilities (as well as limitations). However, for the case of clear standard markings, these algorithms are sufficient to find the traffic lane.  
+## Requirements
+ - C++17 standard
+ - Opencv 3
+ - Eigen
 ## Example result
 ![til](/RoadLineDetection/data/outputs/example_video_out.gif)
 Below I will describe a few highlights of how I achieveded this.
