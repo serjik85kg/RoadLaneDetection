@@ -138,3 +138,11 @@ As soon as I have time, I will expand this project by adding additional features
 ### Bonus brutal video output
 ![til](/RoadLineDetection/data/outputs/example_video_hard.gif)  
 Pretty good :)
+
+
+## TO DO:
+ - Add command prompt properties
+ - Add debug mode
+ - Edit some mistakes in Processor
+ - Oprimize
+ - Change some input and return values in functions
