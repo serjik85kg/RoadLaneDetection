@@ -146,3 +146,4 @@ Pretty good :)
  - Edit some mistakes in Processor
  - Oprimize
  - Change some input and return values in functions
+ - Add cmakelists.txt build configuration
