@@ -146,6 +146,7 @@ Pretty good :)
  - Edit radius and position outputs
  - Edit some mistakes in Processor
  - Oprimize
+ - Edit codstyle (mb)
  - Change some input and return values in functions
  - Add cmakelists.txt build configuration
  
