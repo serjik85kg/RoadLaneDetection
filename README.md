@@ -149,4 +149,5 @@ Pretty good :)
  - Edit codstyle (mb)
  - Change some input and return values in functions
  - Add cmakelists.txt build configuration
+ - Remove Eigen dependencies
  
